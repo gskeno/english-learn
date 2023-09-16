@@ -39,22 +39,32 @@ public class WordRepository {
         }
         Sheet sheet = workbook.getSheetAt(0);
         Iterator<Row> iterator = sheet.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Row row = iterator.next();
             Iterator<Cell> cellIterator = row.cellIterator();
             int number = Double.valueOf(cellIterator.next().getNumericCellValue()).intValue();
             String word = cellIterator.next().getStringCellValue();
             String soundMark = cellIterator.next().getStringCellValue();
             String meaning = cellIterator.next().getStringCellValue();
-            cellIterator.next();
-            String listIndex = cellIterator.next().getStringCellValue();
-            WordDescription wordDesc = new WordDescription(number, word, soundMark, meaning, listIndex);
-            wordList.add(wordDesc);
 
+            // list在哪一列不确定
+            Cell cell = cellIterator.next();
+            String value = cell.getStringCellValue();
+            String listIndex;
+            if (value != null && value.contains("List")) {
+                listIndex = value;
+            } else {
+                listIndex = cellIterator.next().getStringCellValue();
+            }
+            int index = listIndex.indexOf("List");
+            String listNo = listIndex.substring(index + 4).trim();
+
+            WordDescription wordDesc = new WordDescription(number, word, soundMark, meaning, listIndex, Integer.valueOf(listNo));
+            wordList.add(wordDesc);
         }
     }
 
-    public static List<WordDescription> getWordList(){
+    public static List<WordDescription> getWordList() {
         return wordList;
     }
 }

@@ -11,12 +11,15 @@ public class WordDescription {
 
     private String listIndex;
 
-    public WordDescription(Integer number, String word, String soundMark, String meaning, String listIndex) {
+    private Integer listNo;
+
+    public WordDescription(Integer number, String word, String soundMark, String meaning, String listIndex, Integer listNo) {
         this.number = number;
         this.word = word;
         this.soundMark = soundMark;
         this.meaning = meaning;
         this.listIndex = listIndex;
+        this.listNo = listNo;
     }
 
     public Integer getNumber() {
@@ -59,6 +62,14 @@ public class WordDescription {
         this.listIndex = listIndex;
     }
 
+    public Integer getListNo() {
+        return listNo;
+    }
+
+    public void setListNo(Integer listNo) {
+        this.listNo = listNo;
+    }
+
     @Override
     public String toString() {
         return "WordDescription{" +
@@ -67,6 +78,7 @@ public class WordDescription {
                 ", soundMark='" + soundMark + '\'' +
                 ", meaning='" + meaning + '\'' +
                 ", listIndex='" + listIndex + '\'' +
+                ", listNo=" + listNo +
                 '}';
     }
 }

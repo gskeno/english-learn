@@ -29,7 +29,7 @@ public class FileReadTest {
             String soundMark = cellIterator.next().getStringCellValue();
             String meaning = cellIterator.next().getStringCellValue();
             String listIndex = cellIterator.next().getStringCellValue();
-            WordDescription wordDesc = new WordDescription(number, word, soundMark, meaning, listIndex);
+            WordDescription wordDesc = new WordDescription(number, word, soundMark, meaning, listIndex, 3);
             wordList.add(wordDesc);
 
         }
